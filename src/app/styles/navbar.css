@@ -1,0 +1,70 @@
+/* Navbar container */
+.navbar {
+  background-color: #1f2937; /* Set the background color to a dark gray */
+}
+
+/* Logo styles */
+.logo {
+  font-family: 'Arial', sans-serif;
+  font-weight: bold;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #fff; /* Set the logo text color to white */
+}
+
+.currency-symbol {
+  color: #ff9800;
+}
+
+.trading-chart {
+  width: 20px;
+  height: 20px;
+  background-color: #ccc; /* Set the trading chart background color to a light gray */
+  border-radius: 50%;
+}
+
+/* Navigation links */
+.navbar a {
+  text-decoration: none;
+  color: #d1d5db; /* Set the default link color to a light gray */
+}
+
+.navbar a:hover {
+  background-color: #4b5563; /* Set the background color when hovering over a link */
+  color: #fff; /* Set the text color when hovering over a link to white */
+}
+
+/* Mobile menu button */
+.navbar button {
+  background-color: #1f2937; /* Set the button background color to match the navbar */
+  color: #9ca3af; /* Set the button text color to a light gray */
+}
+
+.navbar button:hover {
+  background-color: #4b5563; /* Set the button background color when hovering */
+  color: #fff; /* Set the button text color when hovering to white */
+}
+
+/* App Logo */
+.logo {
+  font-family: 'Arial', sans-serif;
+  font-weight: bold;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #fff; /* Set the logo text color to white */
+}
+
+.currency-symbol {
+  color: #ff9800;
+}
+
+.trading-chart {
+  width: 20px;
+  height: 20px;
+  background-color: #ccc; /* Set the trading chart background color to a light gray */
+  border-radius: 50%;
+}
