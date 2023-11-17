@@ -1,4 +1,4 @@
-import CurrentAccount from "@/app/components/accounts/current";
+import CurrentAccount from "@/app/components/account/current";
 
 export default function profileCurrentUserPage() {
   return (

@@ -1,5 +1,5 @@
 import "../../app/styles/logout.css";
-import Logout from "@/app/components/auth/logout";
+import Logout from "@/app/components/account/logout";
 
 
 export default function LogoutPage() {
