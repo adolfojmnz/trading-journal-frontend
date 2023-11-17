@@ -1,7 +1,10 @@
-import React from 'react';
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
+import { Menu, Transition } from '@headlessui/react';
 
+function classNames(...classes) {
+  return classes.filter(Boolean).join(' ');
+}
 
 const Navbar = () => {
   const [username, setUsername] = useState(null);
@@ -12,46 +15,200 @@ const Navbar = () => {
     }
   }, []);
 
+
   return (
-    <nav className="navbar">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <div className="flex items-center">
-            <div className="logo">
-              <Link href="/">
-                <span className="currency-symbol">$</span> FTA
-              </Link>
+    <div className='w-full h-20 flex justify-between items-center px-8 text-black'>
+      <h1 className='text-2xl font-bold rounded-md border'><span className='text-[#c5862e]'>$</span> FXT/APP</h1>
+      <ul className='flex items-center'>
+        <li className='p-4'>
+          <Menu as='div' className='relative inline-block text-left'>
+            <Menu.Button>Trades</Menu.Button>
+            <Transition
+              as={Fragment}
+              enter='transition ease-out duration-100'
+              enterFrom='transform opacity-0 scale-95'
+              enterTo='transform opacity-100 scale-100'
+              leave='transition ease-in duration-100'
+              leaveFrom='transform opacity-100 scale-100'
+              leaveTo='transform opacity-0 scale-95'
+            >
+              <Menu.Items className='origin-top-left absolute left-0 mt-2 w-56 rounded-md shadow-lg bg-white divide-y divide-gray-100 focus:outline-none'>
+                <div className='py-1'>
+                  <Menu.Item>
+                    {({ active }) => (
+                      <Link
+                        href='/trades/add'
+                        className={classNames(
+                          active
+                            ? 'bg-gray-100 text-gray-900'
+                            : 'text-gray-700',
+                          'block px-4 py-2 text-sm'
+                        )}
+                      >
+                        Add Trade
+                      </Link>
+                    )}
+                  </Menu.Item>
+                  <Menu.Item>
+                    {({ active }) => (
+                      <Link href="/trades"
+                        className={classNames(
+                          active
+                            ? 'bg-gray-100 text-gray-900'
+                            : 'text-gray-700',
+                          'block px-4 py-2 text-sm'
+                        )}
+                      >
+                        Trade List
+                      </Link>
+                    )}
+                  </Menu.Item>
+                  <Menu.Item>
+                    {({ active }) => (
+                      <Link href="/trades/stats"
+                        className={classNames(
+                          active
+                            ? 'bg-gray-100 text-gray-900'
+                            : 'text-gray-700',
+                          'block px-4 py-2 text-sm'
+                        )}
+                      >
+                        Trade Stats
+                      </Link>
+                    )}
+                  </Menu.Item>
+                </div>
+              </Menu.Items>
+            </Transition>
+          </Menu>
+        </li>
+        <li className='p-4'>Assets</li>
+        <li className='p-4'><Link href="/contact">Contact</Link></li>
+        <li className='p-4'><Link href="/about">About</Link></li>
+        <li className='p-4'>
+          <Menu as='div' className='relative inline-block text-left'>
+            <div>
+              <Menu.Button className='inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500'>
+                Account
+              </Menu.Button>
             </div>
-            <div className="hidden md:block">
-              <div className="ml-10 flex items-baseline space-x-4">
-                <Link href="/trades">
-                  <span className="nav-link">Trades</span>
-                </Link>
-                <Link href="/about">
-                  <span className="nav-link">About</span>
-                </Link>
-                <Link href="/contact">
-                  <span className="nav-link">Contact</span>
-                </Link>
-                {
-                  username ?
-                  <Link href="/auth/logout"><span className="nav-link">Log out</span></Link> :
-                  <Link href="/auth/login"><span className="nav-link">Log in</span></Link>
-                }
-              </div>
-            </div>
-          </div>
-          <div className="-mr-2 flex md:hidden">
-            <button className="menu-button">
-              <span className="sr-only">Open main menu</span>
-              <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
-    </nav>
+
+            <Transition
+              as={Fragment}
+              enter='transition ease-out duration-100'
+              enterFrom='transform opacity-0 scale-95'
+              enterTo='transform opacity-100 scale-100'
+              leave='transition ease-in duration-75'
+              leaveFrom='transform opacity-100 scale-100'
+              leaveTo='transform opacity-0 scale-95'
+            >
+              <Menu.Items className='origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none'>
+                <div className='py-1'>
+                  {!username ? (
+                    <Menu.Item>
+                      {({ active }) => (
+                        <Link href="/account/login"
+                          className={classNames(
+                            active
+                              ? 'bg-gray-100 text-gray-900'
+                              : 'text-gray-700',
+                            'block px-4 py-2 text-sm'
+                          )}
+                        >
+                          Log In
+                        </Link>
+                      )}
+                    </Menu.Item>
+                  ) : (
+                    <Menu.Item>
+                      {({ active }) => (
+                        <Link href="/account/logout"
+                          className={classNames(
+                            active
+                              ? 'bg-gray-100 text-gray-900'
+                              : 'text-gray-700',
+                            'block px-4 py-2 text-sm'
+                          )}
+                        >
+                          Log Out
+                        </Link>
+                      )}
+                    </Menu.Item>
+                  )}
+                  {!username ? (
+                    <Menu.Item>
+                      {({ active }) => (
+                        <Link href="/account/register"
+                          className={classNames(
+                            active
+                              ? 'bg-gray-100 text-gray-900'
+                              : 'text-gray-700',
+                            'block px-4 py-2 text-sm'
+                          )}
+                        >
+                          Register
+                        </Link>
+                      )}
+                    </Menu.Item>
+                  ) : (
+                    <Menu.Item>
+                      {({ active }) => (
+                        <Link href="/account/update"
+                          className={classNames(
+                            active
+                              ? 'bg-gray-100 text-gray-900'
+                              : 'text-gray-700',
+                            'block px-4 py-2 text-sm'
+                          )}
+                        >
+                          Update
+                        </Link>
+                      )}
+                    </Menu.Item>
+                  )}
+                </div>
+                  {username ? (
+                    <div className='py-1'>
+                      <Menu.Item>
+                        {({ active }) => (
+                          <Link
+                            href='/account/current'
+                            className={classNames(
+                              active
+                                ? 'bg-gray-100 text-gray-900'
+                                : 'text-gray-700',
+                              'block px-4 py-2 text-sm'
+                          )}
+                          >
+                            Profile
+                          </Link>
+                        )}
+                      </Menu.Item>
+                      <Menu.Item>
+                        {({ active }) => (
+                          <Link
+                            href='/account/delete'
+                            className={classNames(
+                              active
+                                ? 'bg-gray-100 text-gray-900'
+                                : 'text-gray-700',
+                              'block px-4 py-2 text-sm'
+                            )}
+                            >
+                              Delete Account
+                          </Link>
+                        )}
+                      </Menu.Item>
+                    </div>
+                  ) : (
+                    <span></span>
+                )}
+              </Menu.Items>
+            </Transition>
+          </Menu>
+        </li>
+      </ul>
+    </div>
   );
 };
 

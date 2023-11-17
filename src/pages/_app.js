@@ -1,6 +1,5 @@
 import '../app/styles/globals.css';
 import '../app/styles/footer.css';
-import '../app/styles/navbar.css';
 
 import Navbar from '../app/components/Navbar';
 import Footer from '../app/components/Footer';
