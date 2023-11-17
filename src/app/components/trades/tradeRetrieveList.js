@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 import { getTradeList } from '@/app/api/trades';
 
 
-const TradeList = () => {
+const TradeRetrieveList = () => {
   const [trades, setTrades] = useState([]);
   const [error, setError] = useState(null);
+  const router = useRouter();
 
   useEffect(() => {
     fetchTrades();
@@ -23,9 +25,13 @@ const TradeList = () => {
     }
   };
 
+  const handlerowClick = (tradeID) => {
+    router.push(`/trades/${tradeID}`);
+  }
+
   return (
-    <div className="trade-list-container">
-      <h2 className="trade-list-title">Trade List</h2>
+    <div className="trades-container">
+      <h2 className="page-title">Trade List</h2>
       {error ? (
         <p className="error-message">{error}</p>
       ) : (
@@ -48,7 +54,7 @@ const TradeList = () => {
           <tbody>
             {trades.length > 0 ? (
               trades.map((trade, index) => (
-                <tr className="trade-list-item" key={index}>
+                <tr onClick={() => handlerowClick(trade.id)} className="trade-list-item" key={index}>
                   <td className="py-2 px-4 border-b text-left w-1/9">{trade.ticket}</td>
                   <td className="py-2 px-4 border-b text-left w-2/9">{trade.currency_pair}</td>
                   <td className="py-2 px-4 border-b text-left w-1/9">{trade.type === "S" ? "Short" : "Long"}</td>
@@ -76,4 +82,4 @@ const TradeList = () => {
   );
 };
 
-export default TradeList;
+export default TradeRetrieveList;

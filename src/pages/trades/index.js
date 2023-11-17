@@ -1,5 +1,5 @@
 import '../../app/styles/tradeList.css';
-import TradeList from '@/app/components/trades/trade_list';
+import TradeRetrieveList from '@/app/components/trades/tradeRetrieveList';
 
 
 export default function TradeListPage() {
@@ -7,7 +7,7 @@ export default function TradeListPage() {
     <div className="bg-gray-100 min-h-screen">
       <main>
         <div>
-          <TradeList />
+          <TradeRetrieveList />
         </div>
       </main>
     </div>
