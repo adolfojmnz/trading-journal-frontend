@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { getTradeList } from '@/app/api/trades';
 
 
-const TradeRetrieveList = () => {
+const ListTrades = () => {
   const [trades, setTrades] = useState([]);
   const [error, setError] = useState(null);
   const router = useRouter();
@@ -82,4 +82,4 @@ const TradeRetrieveList = () => {
   );
 };
 
-export default TradeRetrieveList;
+export default ListTrades;

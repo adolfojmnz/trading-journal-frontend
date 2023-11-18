@@ -4,7 +4,7 @@ import { updateTrade, getTradeDetail} from "@/app/api/trades";
 import Link from "next/link";
 
 
-export default function UpdateTrade() {
+export default function EditTrade() {
   const [trade, setTrade] = useState(null);
   const [error, setError] = useState(null);
   const [tradeID, setTradeID] = useState(null);

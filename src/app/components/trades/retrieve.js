@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import Link from "next/link";
 
 
-const TradeRetrieveDetails = () => {
+const RetrieveTrade = () => {
   const [trade, setTrade] = useState(null);
   const [error, setError] = useState(null);
   const [tradeID, setTradeID] = useState(null);
@@ -106,7 +106,7 @@ const TradeRetrieveDetails = () => {
             </tbody>
           </table>
           <div className="col-span-2">
-            <Link href={`/trades/${tradeID}/update`}>
+            <Link href={`/trades/${tradeID}/edit`}>
               <button type="submit" className="bg-blue-500 text-white font-medium px-4 py-2 rounded-md">
                 Edit Trade
               </button>
@@ -133,4 +133,4 @@ const TradeRetrieveDetails = () => {
   );
 };
 
-export default TradeRetrieveDetails;
+export default RetrieveTrade;
