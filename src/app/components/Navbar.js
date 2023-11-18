@@ -39,7 +39,7 @@ const Navbar = () => {
                   <Menu.Item>
                     {({ active }) => (
                       <Link
-                        href='/trades/add'
+                        href='/trades'
                         className={classNames(
                           active
                             ? 'bg-gray-100 text-gray-900'
@@ -47,13 +47,13 @@ const Navbar = () => {
                           'block px-4 py-2 text-sm'
                         )}
                       >
-                        Add Trade
+                        List
                       </Link>
                     )}
                   </Menu.Item>
                   <Menu.Item>
                     {({ active }) => (
-                      <Link href="/trades"
+                      <Link href="/trades/add"
                         className={classNames(
                           active
                             ? 'bg-gray-100 text-gray-900'
@@ -61,7 +61,7 @@ const Navbar = () => {
                           'block px-4 py-2 text-sm'
                         )}
                       >
-                        Trade List
+                        Add
                       </Link>
                     )}
                   </Menu.Item>
@@ -75,7 +75,7 @@ const Navbar = () => {
                           'block px-4 py-2 text-sm'
                         )}
                       >
-                        Trade Stats
+                        Stats
                       </Link>
                     )}
                   </Menu.Item>
@@ -84,7 +84,40 @@ const Navbar = () => {
             </Transition>
           </Menu>
         </li>
-        <li className='p-4'>Assets</li>
+        <li className='p-4'>
+          <Menu as='div' className='relative inline-block text-left'>
+            <Menu.Button>Assets</Menu.Button>
+            <Transition
+              as={Fragment}
+              enter='transition ease-out duration-100'
+              enterFrom='transform opacity-0 scale-95'
+              enterTo='transform opacity-100 scale-100'
+              leave='transition ease-in duration-100'
+              leaveFrom='transform opacity-100 scale-100'
+              leaveTo='transform opacity-0 scale-95'
+            >
+              <Menu.Items className='origin-top-left absolute left-0 mt-2 w-56 rounded-md shadow-lg bg-white divide-y divide-gray-100 focus:outline-none'>
+                <div className='py-1'>
+                  <Menu.Item>
+                    {({ active }) => (
+                      <Link
+                        href='/assets'
+                        className={classNames(
+                          active
+                            ? 'bg-gray-100 text-gray-900'
+                            : 'text-gray-700',
+                          'block px-4 py-2 text-sm'
+                        )}
+                      >
+                        List
+                      </Link>
+                    )}
+                  </Menu.Item>
+                </div>
+              </Menu.Items>
+            </Transition>
+          </Menu>
+        </li>
         <li className='p-4'><Link href="/contact">Contact</Link></li>
         <li className='p-4'><Link href="/about">About</Link></li>
         <li className='p-4'>
