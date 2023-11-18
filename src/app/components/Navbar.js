@@ -18,7 +18,9 @@ const Navbar = () => {
 
   return (
     <div className='w-full h-20 flex justify-between items-center px-8 text-black'>
-      <h1 className='text-2xl font-bold rounded-md border'><span className='text-[#c5862e]'>$</span> FXT/APP</h1>
+      <Link href="/">
+        <h1 className='text-2xl font-bold rounded-md border'><span className='text-[#c5862e]'>$</span> FXT/APP</h1>
+      </Link>
       <ul className='flex items-center'>
         <li className='p-4'>
           <Menu as='div' className='relative inline-block text-left'>
