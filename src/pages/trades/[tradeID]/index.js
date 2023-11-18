@@ -1,4 +1,4 @@
-import '../../app/styles/tradeDetails.css';
+import '../../../app/styles/tradeDetails.css';
 import TradeRetrieveDetails from '@/app/components/trades/tradeRetrieve';
 
 
