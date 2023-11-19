@@ -1,6 +1,4 @@
-/* assetlist.css */
-
-.assets-container {
+.asset-container {
   margin-top: 16px;
   display: flex;
   justify-content: center;
@@ -17,28 +15,22 @@
   margin-bottom: 16px;
 }
 
-.asset-list {
+.asset-details-table {
   list-style-type: none;
   padding: 0;
-  /* display: flex; */
-  /* flex-direction: column; */
   align-items: left;
 }
 
-.asset-list-item {
+.asset-item {
   background-color: #f7fafc;
   padding: 8px;
   margin-bottom: 8px;
   border-radius: 4px;
 }
 
-.no-assets-message {
+.no-found-message {
   margin-top: 16px;
   font-style: italic;
   color: #999999;
   text-align: center;
-}
-
-.assets-container .asset-list-item:hover {
-  background-color: lightgrey;
 }

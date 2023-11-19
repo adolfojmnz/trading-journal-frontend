@@ -1,4 +1,4 @@
-import '@/app/styles/assetList.css';
+import '@/app/styles/assets/list.css';
 import AssetList from "@/app/components/assets/list";
 
 
