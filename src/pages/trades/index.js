@@ -1,4 +1,4 @@
-import '../../app/styles/tradeList.css';
+import '../../app/styles/trades/list.css';
 import ListTrades from '@/app/components/trades/list';
 
 
