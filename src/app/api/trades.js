@@ -1,6 +1,20 @@
 import { useAuth } from "./auth";
 
 
+export async function addTrade(data) {
+  const url = "http://localhost:8000/api/trades";
+
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  };
+
+  return useAuth(url, options);
+}
+
 export async function getTradeList() {
   const url = "http://localhost:8000/api/trades";
 
