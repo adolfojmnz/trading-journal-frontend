@@ -15,11 +15,21 @@ const Navbar = () => {
     }
   }, []);
 
-
   return (
     <div className='w-full h-20 flex justify-between items-center px-8 text-black'>
       <Link href="/">
-        <h1 className='text-2xl font-bold rounded-md border'><span className='text-[#c5862e]'>$</span> FXT/APP</h1>
+        <div className='flex items-center'>
+          <img
+            // src='https://i.postimg.cc/pX3Cm7hJ/logo.jpg'
+            src='https://i.postimg.cc/TwJGwFRk/logo.png'
+            alt='Logo'
+            className='mr-2 h-10'
+            sizes='40'
+          />
+          <h1 className='text-2xl font-bold text-gray-800'>
+            FXT/APP
+          </h1>
+        </div>
       </Link>
       <ul className='flex items-center'>
         <li className='p-4'>
@@ -67,7 +77,7 @@ const Navbar = () => {
                   </Menu.Item>
                   <Menu.Item>
                     {({ active }) => (
-                      <Link href="/trades/stats"
+                      <Link href="/trades/metrics"
                         className={classNames(
                           active
                             ? 'bg-gray-100 text-gray-900'
@@ -75,7 +85,7 @@ const Navbar = () => {
                           'block px-4 py-2 text-sm'
                         )}
                       >
-                        Stats
+                        Metrics
                       </Link>
                     )}
                   </Menu.Item>
