@@ -1,7 +1,7 @@
-import MetricsSummary from "@/app/components/trades/metrics/Summary";
+import Metrics from "@/app/components/metrics/Metrics";
 
 export default function MetricsSummaryPage() {
   return (
-    <MetricsSummary />
+    <Metrics />
   );
 }
