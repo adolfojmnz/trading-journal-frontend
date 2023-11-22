@@ -38,6 +38,7 @@ const ListTrades = () => {
         <table className="trade-list w-full border-collapse">
           <thead>
             <tr className="bg-gray-200">
+              <th className="py-2 px-4 border-b text-center w-1/9">Index</th>
               <th className="py-2 px-4 border-b text-center w-1/9">Ticket</th>
               <th className="py-2 px-4 border-b text-center w-2/9">Currency Pair</th>
               <th className="py-2 px-4 border-b text-center w-1/9">Type</th>
@@ -55,6 +56,7 @@ const ListTrades = () => {
             {trades.length > 0 ? (
               trades.map((trade, index) => (
                 <tr onClick={() => handlerowClick(trade.id)} className="trade-list-item" key={index}>
+                  <td className="py-2 px-4 border-b text-center w-1/9">{index}</td>
                   <td className="py-2 px-4 border-b text-center w-1/9">{trade.ticket}</td>
                   <td className="py-2 px-4 border-b text-center w-2/9">{trade.currency_pair}</td>
                   <td className="py-2 px-4 border-b text-center w-1/9">{trade.type === "S" ? "Short" : "Long"}</td>

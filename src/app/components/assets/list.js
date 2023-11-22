@@ -38,6 +38,7 @@ const AssetList = () => {
         <table className="asset-list w-full border-collapse">
           <thead>
             <tr className="bg-gray-200">
+              <th className="py-2 px-4 border-b text-center w-1/9">Index</th>
               <th className="py-2 px-4 border-b text-center w-2/9">Symbol</th>
               <th className="py-2 px-4 border-b text-center w-1/9">Name</th>
               <th className="py-2 px-4 border-b text-center w-1/9">Base Currency</th>
@@ -49,6 +50,7 @@ const AssetList = () => {
             {assets.length > 0 ? (
               assets.map((asset, index) => (
                 <tr onClick={() => handlerowClick(asset.id)} className="asset-list-item" key={index}>
+                  <td className="py-2 px-4 border-b text-center w-1/9">{index}</td>
                   <td className="py-2 px-4 border-b text-center w-1/9">{asset.symbol}</td>
                   <td className="py-2 px-4 border-b text-center w-1/9">{asset.name}</td>
                   <td className="py-2 px-4 border-b text-center w-1/9">{asset.base_currency}</td>
