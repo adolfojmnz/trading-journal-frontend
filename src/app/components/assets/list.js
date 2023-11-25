@@ -1,7 +1,6 @@
-import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
-import { getAssetList } from '@/app/api/assets';
-
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { getAssetList } from "@/app/api/assets";
 
 const AssetList = () => {
   const [assets, setAssets] = useState([]);
@@ -16,18 +15,18 @@ const AssetList = () => {
     try {
       const response = await getAssetList();
       if (!response.ok) {
-        throw new Error('Error fetching assets.');
+        throw new Error("Error fetching assets.");
       }
       const data = await response.json();
       setAssets(data);
     } catch (error) {
-      setError('Error fetching assets from the server. Try loging in first!');
+      setError("Error fetching assets from the server. Try loging in first!");
     }
   };
 
   const handlerowClick = (tradeID) => {
     router.push(`/assets/${tradeID}`);
-  }
+  };
 
   return (
     <div className="assets-container">
@@ -41,26 +40,51 @@ const AssetList = () => {
               <th className="py-2 px-4 border-b text-center w-1/9">Index</th>
               <th className="py-2 px-4 border-b text-center w-2/9">Symbol</th>
               <th className="py-2 px-4 border-b text-center w-1/9">Name</th>
-              <th className="py-2 px-4 border-b text-center w-1/9">Base Currency</th>
-              <th className="py-2 px-4 border-b text-center w-1/9">Quote Currency</th>
-              <th className="py-2 px-4 border-b text-center w-1/9">PIP Movement</th>
+              <th className="py-2 px-4 border-b text-center w-1/9">
+                Base Currency
+              </th>
+              <th className="py-2 px-4 border-b text-center w-1/9">
+                Quote Currency
+              </th>
+              <th className="py-2 px-4 border-b text-center w-1/9">
+                PIP Movement
+              </th>
             </tr>
           </thead>
           <tbody>
             {assets.length > 0 ? (
               assets.map((asset, index) => (
-                <tr onClick={() => handlerowClick(asset.id)} className="asset-list-item" key={index}>
-                  <td className="py-2 px-4 border-b text-center w-1/9">{index}</td>
-                  <td className="py-2 px-4 border-b text-center w-1/9">{asset.symbol}</td>
-                  <td className="py-2 px-4 border-b text-center w-1/9">{asset.name}</td>
-                  <td className="py-2 px-4 border-b text-center w-1/9">{asset.base_currency}</td>
-                  <td className="py-2 px-4 border-b text-center w-1/9">{asset.quote_currency}</td>
-                  <td className="py-2 px-4 border-b text-center w-1/9">{asset.pip_decimal_position}</td>
+                <tr
+                  onClick={() => handlerowClick(asset.id)}
+                  className="asset-list-item"
+                  key={index}
+                >
+                  <td className="py-2 px-4 border-b text-center w-1/9">
+                    {index}
+                  </td>
+                  <td className="py-2 px-4 border-b text-center w-1/9">
+                    {asset.symbol}
+                  </td>
+                  <td className="py-2 px-4 border-b text-center w-1/9">
+                    {asset.name}
+                  </td>
+                  <td className="py-2 px-4 border-b text-center w-1/9">
+                    {asset.base_currency}
+                  </td>
+                  <td className="py-2 px-4 border-b text-center w-1/9">
+                    {asset.quote_currency}
+                  </td>
+                  <td className="py-2 px-4 border-b text-center w-1/9">
+                    {asset.pip_decimal_position}
+                  </td>
                 </tr>
               ))
             ) : (
               <tr>
-                <td colSpan="9" className="no-assets-message py-2 px-4 text-center">
+                <td
+                  colSpan="9"
+                  className="no-assets-message py-2 px-4 text-center"
+                >
                   No assets found.
                 </td>
               </tr>

@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
-import { APILoginRequest } from '@/app/api/auth';
-
+import React, { useState } from "react";
+import { APILoginRequest } from "@/app/api/auth";
 
 export default function Login() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -20,12 +19,12 @@ export default function Login() {
         localStorage.setItem("isLoggedIn", true);
         localStorage.setItem("accessToken", data.access);
         localStorage.setItem("refreshToken", data.refresh);
-        window.location.href = '/';
+        window.location.href = "/";
       } else {
         raise;
       }
     } catch (error) {
-      setError('Invalid username or password');
+      setError("Invalid username or password");
     }
   };
 

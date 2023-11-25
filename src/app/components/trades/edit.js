@@ -1,8 +1,7 @@
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
-import { updateTrade, getTradeDetail} from "@/app/api/trades";
+import { updateTrade, getTradeDetail } from "@/app/api/trades";
 import Link from "next/link";
-
 
 export default function EditTrade() {
   const [trade, setTrade] = useState(null);
@@ -15,7 +14,7 @@ export default function EditTrade() {
     try {
       const response = await getTradeDetail(tradeID);
       if (!response.ok) {
-        throw new Error('Trade could not be fetched.')
+        throw new Error("Trade could not be fetched.");
       } else {
         const tradeData = await response.json();
         setTrade(tradeData);
@@ -29,13 +28,13 @@ export default function EditTrade() {
     if (router.isReady === true) {
       setTradeID(router.query.tradeID);
     }
-  }, [router.isReady])
+  }, [router.isReady]);
 
   useEffect(() => {
     if (tradeID) {
       fetchTrade(tradeID);
     }
-  }, [tradeID])
+  }, [tradeID]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -54,35 +53,37 @@ export default function EditTrade() {
   };
 
   const handleSubmit = async () => {
-    const response = await updateTrade(tradeID, trade)
+    const response = await updateTrade(tradeID, trade);
 
     if (!response.ok) {
-      alert("Error updating the trade data.")
+      alert("Error updating the trade data.");
     } else {
       window.location.href = `/trades/${tradeID}`;
     }
-  }
+  };
 
   if (error) {
     return (
       <div className="fex flex-col justify-center items-center">
         Error fetching the requested trade.
       </div>
-    )
+    );
   }
 
   if (!trade) {
     return (
-      <div className="fex flex-col justify-center items-center">
-        Loading...
-      </div>
-    )
+      <div className="fex flex-col justify-center items-center">Loading...</div>
+    );
   }
 
   return (
     <div className="flex flex-col justify-center items-center">
       <h2 className="text-3xl font-bold mb-5">Update Trade</h2>
-      <form method="PATCH" onSubmit={handleSubmit} className="grid grid-cols-1 gap-4 w-full max-w-md">
+      <form
+        method="PATCH"
+        onSubmit={handleSubmit}
+        className="grid grid-cols-1 gap-4 w-full max-w-md"
+      >
         <div className="mb-2">
           <label className="block font-medium mb-1">Trade Ticket</label>
           <input
@@ -212,16 +213,23 @@ export default function EditTrade() {
           />
         </div>
         <div className="col-span-2">
-          <button type="submit" className="bg-blue-500 text-white font-medium px-4 py-2 rounded-md">
+          <button
+            type="submit"
+            className="bg-blue-500 text-white font-medium px-4 py-2 rounded-md"
+          >
             Save
-          </button> <span> </span>
+          </button>{" "}
+          <span> </span>
           <Link href={`/trades/${tradeID}`}>
-            <button type="text" className="bg-gray-500 text-white font-medium px-4 py-2 rounded-md">
+            <button
+              type="text"
+              className="bg-gray-500 text-white font-medium px-4 py-2 rounded-md"
+            >
               Cancel
             </button>
           </Link>
         </div>
       </form>
     </div>
-  )
+  );
 }

@@ -21,7 +21,9 @@ const TotalTrades = (metrics) => {
           </div>
           <div>
             <p className="text-sm text-gray-500">Short Positions</p>
-            <p className="text-2xl font-bold">{metrics.total_short_positions}</p>
+            <p className="text-2xl font-bold">
+              {metrics.total_short_positions}
+            </p>
           </div>
         </div>
       </div>

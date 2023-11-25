@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { getCurrentUser } from "@/app/api/accounts";
 
-
 const CurrentAccount = () => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
@@ -11,7 +10,7 @@ const CurrentAccount = () => {
 
     try {
       if (!response.ok) {
-        throw new Error('Error fetching profile details');
+        throw new Error("Error fetching profile details");
       } else {
         const data = await response.json();
         setUser(data);
@@ -26,11 +25,11 @@ const CurrentAccount = () => {
   }, []);
 
   if (error) {
-    return <div>Got an error while loading profile data: {error}</div>
+    return <div>Got an error while loading profile data: {error}</div>;
   }
 
   if (!user) {
-    return <div>Profile data could not be loaded.</div>
+    return <div>Profile data could not be loaded.</div>;
   }
 
   return (
@@ -43,7 +42,9 @@ const CurrentAccount = () => {
         </div>
         <div className="mb-4">
           <label className="font-bold">Name:</label>
-          <p>{user.first_name} {user.last_name}</p>
+          <p>
+            {user.first_name} {user.last_name}
+          </p>
         </div>
         <div className="mb-4">
           <label className="font-bold">Email:</label>
