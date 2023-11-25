@@ -285,7 +285,7 @@ const ListTrades = () => {
             </table>
           </div>
 
-          <div className="p-4">
+          <div>
             {selectedFormOption === "elemental" && (
               elementalFilterForm()
             )}
