@@ -16,15 +16,23 @@ import PositionVolume from "./volume";
 import { formatTime } from "./helpers";
 
 const Metrics = () => {
+  const [error, setError] = useState(null);
   const [metrics, setMetrics] = useState({});
+  const [filters, setFilters] = useState({});
   const [activeSubpage, setActiveSubpage] = useState("summary");
+  const [shouldRefetchMetrics, setShouldFetchMetrics] = useState(true);
+
 
   useEffect(() => {
-    fetchMetricsData();
-  }, [activeSubpage]);
+    if (shouldRefetchMetrics) {
+      fetchMetricsData(filters);
+      setShouldFetchMetrics(false);
+    }
+  }, [shouldRefetchMetrics]);
 
   const handleSubpageChange = (subpage) => {
     setActiveSubpage(subpage);
+    setShouldFetchMetrics(true);
   };
 
   const getMetricsDataRequester = () => {
@@ -42,15 +50,20 @@ const Metrics = () => {
     }
   };
 
-  const fetchMetricsData = async () => {
+  const fetchMetricsData = async (filters) => {
     const APIRequester = getMetricsDataRequester();
-    const respons = await APIRequester();
-    if (respons.ok) {
-      const data = await respons.json();
-      formatMetricsData(data);
-    }
-    {
-      console.log("Error loading metrics");
+    try {
+      const response = await APIRequester(filters);
+      if (response.ok) {
+        const data = await response.json();
+        formatMetricsData(data);
+      } {
+        const status = response.status;
+        const statusText = response.statusText;
+        throw new Error(`Request failed with status: ${status} ${statusText}`);
+      }
+    } catch (error) {
+      setError(error);
     }
   };
 
@@ -77,6 +90,28 @@ const Metrics = () => {
       ...prevMetricsData,
       ...holdingTime,
     }));
+  };
+
+  const handleFiltersChange = (e) => {
+    const { name, value } = e.target;
+    let updatedValue = value;
+
+    if (value === "SHORT") {
+      updatedValue = "S";
+    } else if (value === "LONG") {
+      updatedValue = "L";
+    } else if (value == "--SELECT--") {
+      updatedValue = "";
+    }
+
+    setFilters((prevTradeData) => ({
+      ...prevTradeData,
+      [name]: updatedValue,
+    }));
+  };
+
+  const handleApplyFiltersOnClick = () => {
+    setShouldFetchMetrics(true);
   };
 
   const renderSubpage = () => {
@@ -111,7 +146,7 @@ const Metrics = () => {
 
   const Sidebar = () => {
     return (
-      <div className="cols-span-1 bg-white p-4 rounded shadow border">
+      <div className="cols-span-1 p-4 border rounded shadow bg-gray-100">
         <h2 className="text-xl font-bold mb-2">Metrics Index</h2>
         <ul className="space-y-2">
           <li
@@ -164,29 +199,45 @@ const Metrics = () => {
     );
   };
 
-  const Filters = () => {
+  const filtersForm = () => {
     return (
-      <div className="p-4 border rounded shadow">
+      <div className="p-4 border rounded shadow bg-gray-100">
         <h2 className="font-semibold text-lg mb-4">Filters</h2>
-
-        <form className="mb-4">
-          <label className="block mb-2 font-medium">Date</label>
+        <form className="mb-4" onChange={handleFiltersChange}>
+          <label className="block mb-2 font-medium">Asset</label>
+          <input
+            type="text"
+            name="asset"
+            placeholder="Currency or Currency Pair"
+            className="w-full p-2 border rounded focus:outline-none"
+          />
+          <label className="block mb-2 font-medium">Type</label>
+          <select
+            name="type"
+            className="w-full p-2 border rounded bg-white focus:outline-none">
+            <option>--SELECT--</option>
+            <option>SHORT</option>
+            <option>LONG</option>
+          </select>
+          <label className="block mb-2 font-medium">From</label>
           <input
             type="date"
+            name="open_date_gte"
+            placeholder="Greater than or equal to"
             className="w-full p-2 border rounded focus:outline-none"
           />
-        </form>
-
-        <form className="mb-4">
-          <label className="block mb-2 font-medium">Number of Items</label>
+          <label className="block mb-2 font-medium">To</label>
           <input
-            min="0"
-            type="number"
+            type="date"
+            name="open_date_lte"
             className="w-full p-2 border rounded focus:outline-none"
           />
         </form>
 
-        <button className="bg-[#6e8a85] text-white font-semibold p-2 rounded w-full">
+        <button
+          onClick={handleApplyFiltersOnClick}
+          className="bg-[#6e8a85] text-white font-semibold p-2 rounded w-full"
+        >
           Apply Filters
         </button>
       </div>
@@ -194,17 +245,22 @@ const Metrics = () => {
   };
 
   return (
-    <div>
-      <h1 className="text-xl text-center font-bold mb-2">
+    <div className="p-4">
+      <h1 className="text-xl text-center font-bold">
         {renderPageTitle()}
       </h1>
-      <div className="grid grid-cols-7 p-6 gap-4">
+      <br />
+
+      <div className="grid grid-cols-7 gap-4">
         {Sidebar()}
-        <div className="container col-span-5 mx-auto p-4">
-          {renderSubpage()}
+        <div className="container col-span-5 mx-auto">
+          {error !== null && (
+            renderSubpage()
+          )}
         </div>
-        {Filters()}
+        {filtersForm()}
       </div>
+
     </div>
   );
 };

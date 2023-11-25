@@ -9,7 +9,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="cols-span-1 bg-white p-4 rounded shadow border">
+    <div className="cols-span-1 p-4 rounded shadow border">
       <h2 className="text-xl font-bold mb-2">Metrics Index</h2>
       <ul className="space-y-2">
         <li

@@ -1,20 +1,10 @@
 import { useAuth } from "./auth";
+import { getFilterParams } from "./_common";
 
-export function requestMetricsSummary() {
-  const url = `http://localhost:8000/api/trades/metrics`;
-
-  const options = {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  };
-
-  return useAuth(url, options);
-}
-
-export function requestPNLMetrics() {
-  const url = `http://localhost:8000/api/trades/metrics/pnl`;
+export function requestMetricsSummary(filters) {
+  const baseURL = `http://localhost:8000/api/trades/metrics`;
+  const filterParams = getFilterParams(filters);
+  const url = `${baseURL}?${filterParams}`;
 
   const options = {
     method: 'GET',
@@ -26,8 +16,10 @@ export function requestPNLMetrics() {
   return useAuth(url, options);
 }
 
-export function requestTotalTradesMetrics() {
-  const url = `http://localhost:8000/api/trades/metrics/total`;
+export function requestPNLMetrics(filters) {
+  const baseURL = `http://localhost:8000/api/trades/metrics/pnl`;
+  const filterParams = getFilterParams(filters);
+  const url = `${baseURL}?${filterParams}`;
 
   const options = {
     method: 'GET',
@@ -39,8 +31,10 @@ export function requestTotalTradesMetrics() {
   return useAuth(url, options);
 }
 
-export function requestHoldingTimeMetrics() {
-  const url = `http://localhost:8000/api/trades/metrics/holding-time`;
+export function requestTotalTradesMetrics(filters) {
+  const baseURL = `http://localhost:8000/api/trades/metrics/total`;
+  const filterParams = getFilterParams(filters);
+  const url = `${baseURL}?${filterParams}`;
 
   const options = {
     method: 'GET',
@@ -52,8 +46,25 @@ export function requestHoldingTimeMetrics() {
   return useAuth(url, options);
 }
 
-export function requestVolumeMetrics() {
-  const url = `http://localhost:8000/api/trades/metrics/volume`;
+export function requestHoldingTimeMetrics(filters) {
+  const baseURL = `http://localhost:8000/api/trades/metrics/holding-time`;
+  const filterParams = getFilterParams(filters);
+  const url = `${baseURL}?${filterParams}`;
+
+  const options = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+  return useAuth(url, options);
+}
+
+export function requestVolumeMetrics(filters) {
+  const baseURL = `http://localhost:8000/api/trades/metrics/volume`;
+  const filterParams = getFilterParams(filters);
+  const url = `${baseURL}?${filterParams}`;
 
   const options = {
     method: 'GET',
