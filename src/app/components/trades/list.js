@@ -56,7 +56,7 @@ const ListTrades = () => {
     router.push(`/trades/${tradeID}`);
   };
 
-  const handleApplyFiltersClickOn = () => {
+  const handleApplyFilters = () => {
     setShouldFetchTrades(true);
   };
 
@@ -107,7 +107,7 @@ const ListTrades = () => {
                 {trade.ticket}
               </td>
               <td className="py-2 px-4 border-b text-center w-2/9">
-                {trade.currency_pair}
+                {trade.currency_pair_symbol}
               </td>
               <td className="py-2 px-4 border-b text-center w-1/9">
                 {trade.type === "S" ? "Short" : "Long"}
@@ -222,6 +222,12 @@ const ListTrades = () => {
         <form className="mb-4" onChange={handleFormChange}>
           {commomFilterForm()}
         </form>
+        <button
+          onClick={handleApplyFilters}
+          className="bg-[#6e8a85] text-white font-semibold p-2 rounded w-full"
+        >
+          Apply Filters
+        </button>
       </div>
     );
   }
@@ -266,6 +272,12 @@ const ListTrades = () => {
             className="w-full p-2 border rounded focus:outline-none"
           />
         </form>
+        <button
+          onClick={handleApplyFilters}
+          className="bg-[#6e8a85] text-white font-semibold p-2 rounded w-full"
+        >
+          Apply Filters
+        </button>
       </div>
     );
   };
@@ -275,11 +287,13 @@ const ListTrades = () => {
       <h2 className="text-center text-2xl font-bold">Trade List</h2>
       <br />
       {error ? (
-        <p className="text-center">{error}</p>
+        <div>
+          <p className="text-center">{`${error}`}</p>
+        </div>
       ) : (
         <div className="grid grid-cols-6 gap-4">
           <div className="col-span-5 border rounded">
-            <table className="trade-list w-full border-collapse">
+            <table className="w-full border-collapse">
               {tradesTableHead()}
               {tradesTableBody()}
             </table>
@@ -293,13 +307,6 @@ const ListTrades = () => {
             {selectedFormOption === "advanced" && (
               advancedFilterForm()
             )}
-
-            <button
-              onClick={handleApplyFiltersClickOn}
-              className="bg-[#6e8a85] text-white font-semibold p-2 rounded w-full"
-            >
-              Apply Filters
-            </button>
           </div>
         </div>
       )}
