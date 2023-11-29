@@ -10,7 +10,7 @@ const AddTrade = () => {
   const [assetListError, setAssetListError] = useState(null);
 
   const fetchAssetList = async () => {
-    const response = await getAssetList();
+    const response = await getAssetList({});
     if (response.ok) {
       const data = await response.json();
       setAssetList(data);
