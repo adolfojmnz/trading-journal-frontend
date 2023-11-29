@@ -1,4 +1,3 @@
-import "../../../app/styles/trades/retrieve.css";
 import RetrieveTrade from "@/app/components/trades/retrieve";
 
 export default function TradeDetailsPage() {
