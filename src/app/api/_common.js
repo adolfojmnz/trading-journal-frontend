@@ -1,4 +1,4 @@
-export const getFilterParams = (filters) => {
+export const getTradeFilterParams = (filters) => {
   let filterParams = "";
 
   if (filters.asset) {
@@ -79,6 +79,26 @@ export const getFilterParams = (filters) => {
 
   if (filters.loss_lte) {
     filterParams += `loss_lte=${filters.loss_lte}`;
+  }
+
+  return filterParams;
+}
+
+export const getAssetFilterParams = (filters) => {
+  let filterParams = "";
+
+  if (filters.symbol) {
+    filterParams += `symbol=${filters.symbol}&`;
+  }
+
+  if (filters.base_currency_symbol) {
+    filterParams += `base_currency_symbol=${filters.base_currency_symbol}&`;
+  }
+  if (filters.quote_currency_symbol) {
+    filterParams += `quote_currency_symbol=${filters.quote_currency_symbol}&`;
+  }
+  if (filters.pip_decimal_position) {
+    filterParams += `pip_decimal_position=${filters.pip_decimal_position}&`;
   }
 
   return filterParams;

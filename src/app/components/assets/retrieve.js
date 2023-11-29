@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
 import { getAssetDetails } from "@/app/api/assets";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
 const RetrieveAsset = () => {
@@ -40,53 +40,58 @@ const RetrieveAsset = () => {
       {error ? (
         <p className="error-message">{error}</p>
       ) : (
-        <table className="asset-details-table w-full border-collapse">
-          <thead>
-            <tr className="bg-gray-200">
-              <th className="py-2 px-4 border-b text-center w-1/9">Symbol</th>
-              <th className="py-2 px-4 border-b text-center w-2/9">Name</th>
-              <th className="py-2 px-4 border-b text-center w-1/9">
-                Base Currency
-              </th>
-              <th className="py-2 px-4 border-b text-center w-1/9">
-                Quote Currency
-              </th>
-              <th className="py-2 px-4 border-b text-center w-1/9">
-                PIP Movement
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {asset !== null ? (
-              <tr className="asset-item" key={asset.id}>
-                <td className="py-2 px-4 border-b text-center w-1/9">
-                  {asset.symbol}
-                </td>
-                <td className="py-2 px-4 border-b text-center w-2/9">
-                  {asset.name}
-                </td>
-                <td className="py-2 px-4 border-b text-center w-1/9">
-                  {asset.base_currency}
-                </td>
-                <td className="py-2 px-4 border-b text-center w-1/9">
-                  {asset.quote_currency}
-                </td>
-                <td className="py-2 px-4 border-b text-center w-1/9">
-                  {asset.pip_decimal_position}
-                </td>
+        <div className="w-full">
+          <table className="asset-details-table w-full border-collapse">
+            <thead>
+              <tr className="bg-gray-200">
+                <th className="py-2 px-4 border-b text-center w-1/9">Symbol</th>
+                <th className="py-2 px-4 border-b text-center w-2/9">Name</th>
+                <th className="py-2 px-4 border-b text-center w-1/9">
+                  Base Currency
+                </th>
+                <th className="py-2 px-4 border-b text-center w-1/9">
+                  Quote Currency
+                </th>
+                <th className="py-2 px-4 border-b text-center w-1/9">
+                  PIP Movement
+                </th>
               </tr>
-            ) : (
-              <tr>
-                <td
-                  colSpan="9"
-                  className="no-found-message py-2 px-4 text-center"
-                >
-                  Asset not found.
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {asset !== null ? (
+                <tr className="asset-item" key={asset.id}>
+                  <td className="py-2 px-4 border-b text-center w-1/9">
+                    {asset.symbol}
+                  </td>
+                  <td className="py-2 px-4 border-b text-center w-2/9">
+                    {asset.name}
+                  </td>
+                  <td className="py-2 px-4 border-b text-center w-1/9">
+                    {asset.base_currency_symbol}
+                  </td>
+                  <td className="py-2 px-4 border-b text-center w-1/9">
+                    {asset.quote_currency_symbol}
+                  </td>
+                  <td className="py-2 px-4 border-b text-center w-1/9">
+                    {asset.pip_decimal_position}
+                  </td>
+                </tr>
+              ) : (
+                <tr>
+                  <td
+                    colSpan="9"
+                    className="no-found-message py-2 px-4 text-center"
+                  >
+                    Asset not found.
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+          <div className="">
+            <h3 className="justify-center p-4 text-lg">Metrics For This Asset</h3>
+          </div>
+        </div>
       )}
     </div>
   );

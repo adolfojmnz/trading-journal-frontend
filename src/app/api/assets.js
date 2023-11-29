@@ -1,8 +1,11 @@
+import { getAssetFilterParams } from "./_common";
 import { useAuth } from "./auth";
 
 
-export function getAssetList() {
-  const url = "http://localhost:8000/api/assets";
+export function getAssetList(filters) {
+  const base_url = "http://localhost:8000/api/assets";
+  const filterParams = getAssetFilterParams(filters);
+  const url = `${base_url}?${filterParams}`;
 
   const options = {
     method: 'GET',

@@ -1,5 +1,5 @@
 import { useAuth } from "./auth";
-import { getFilterParams } from "./_common";
+import { getTradeFilterParams } from "./_common";
 
 
 export async function addTrade(data) {
@@ -18,7 +18,7 @@ export async function addTrade(data) {
 
 export async function getTradeList(filters) {
   const base_url = "http://localhost:8000/api/trades";
-  const filterParams = getFilterParams(filters);
+  const filterParams = getTradeFilterParams(filters);
   const url = `${base_url}?${filterParams}`;
 
   const options = {
