@@ -144,7 +144,7 @@ const AssetList = () => {
             placeholder="Search by quote currency"
             className="w-full p-2 border rounded focus:outline-none"
           />
-          <label className="block mb-2 font-medium">PIP Movement Currency</label>
+          <label className="block mb-2 font-medium">PIP Movement</label>
           <select
             name="pip_decimal_position"
             className="w-full p-2 border rounded bg-white focus:outline-none">

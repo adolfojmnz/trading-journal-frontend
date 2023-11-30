@@ -75,3 +75,16 @@ export function requestVolumeMetrics(filters) {
 
   return useAuth(url, options);
 }
+
+export function requestAssetMetrics(assetID) {
+  const url = `http://localhost:8000/api/assets/${assetID}/metrics`
+
+  const options = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+  return useAuth(url, options);
+}
