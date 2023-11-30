@@ -1,7 +1,7 @@
+import Link from "next/link";
+import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import { getTradeDetail, deleteTrade } from "@/app/api/trades";
-import { useRouter } from "next/router";
-import Link from "next/link";
 
 const RetrieveTrade = () => {
   const [trade, setTrade] = useState(null);
