@@ -3,12 +3,12 @@ import { useEffect, useState } from "react";
 import { getAssetList } from "@/app/api/assets";
 
 const AssetList = () => {
-  const [shouldFetchAssets, setShouldFetchAssets] = useState(true);
-  const [filters, setFilters] = useState({});
+  const router = useRouter();
   const [assets, setAssets] = useState([]);
   const [error, setError] = useState(null);
+  const [filters, setFilters] = useState({});
   const [errorCode, setErrorCode] = useState(null);
-  const router = useRouter();
+  const [shouldFetchAssets, setShouldFetchAssets] = useState(true);
 
   useEffect(() => {
     if (shouldFetchAssets) {
