@@ -1,5 +1,5 @@
 import { useAuth } from "./auth";
-import { getTradeFilterParams } from "./_common";
+import { getTradeFilterParams } from "./filters";
 
 export function requestMetricsSummary(filters) {
   const baseURL = `http://localhost:8000/api/trades/metrics`;

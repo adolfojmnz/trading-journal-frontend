@@ -1,5 +1,5 @@
 import { useAuth } from "./auth";
-import { getTradeFilterParams } from "./_common";
+import { getTradeFilterParams } from "./filters";
 
 
 export async function addTrade(data) {
