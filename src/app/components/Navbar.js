@@ -8,6 +8,31 @@ function classNames(...classes) {
 
 const Navbar = () => {
   const [username, setUsername] = useState(null);
+  const [isLogoutDialogOpen, setIsLogoutDialogOpen] = useState(false);
+
+  const handleLogoutDialogOpen = () => {
+    setIsLogoutDialogOpen(true);
+  };
+
+  const handleLogoutDialogClose = () => {
+    setIsLogoutDialogOpen(false);
+  };
+
+  const handleLogout = () => {
+    logout();
+    handleLogoutDialogClose();
+  };
+
+  const logout = async () => {
+    localStorage.clear("username");
+    localStorage.setItem("isLoggedIn", false);
+    localStorage.setItem("accessToken", null);
+    localStorage.setItem("refreshToken", null);
+
+    // TODO: blacklist tokens
+
+    window.location.href = "/";
+  };
 
   useEffect(() => {
     if (localStorage.getItem("username")) {
@@ -172,7 +197,8 @@ const Navbar = () => {
                     <Menu.Item>
                       {({ active }) => (
                         <Link
-                          href="/account/logout"
+                          href="#"
+                          onClick={handleLogoutDialogOpen}
                           className={classNames(
                             active
                               ? "bg-gray-100 text-gray-900"
@@ -260,6 +286,28 @@ const Navbar = () => {
           </Menu>
         </li>
       </ul>
+      {isLogoutDialogOpen && (
+        <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-60 bg-white rounded p-4">
+          <h2 className="text-lg font-bold">
+            Are you sure you want to log out?
+          </h2>
+
+          <div className="flex justify-center mt-4">
+            <button
+              onClick={handleLogoutDialogClose}
+              className="bg-gray-500 text-white font-bold py-2 px-4 rounded mr-2"
+            >
+              Cancel
+            </button>
+            <button
+              onClick={handleLogout}
+              className="bg-red-500 text-white font-bold py-2 px-4 rounded"
+            >
+              Log out
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
